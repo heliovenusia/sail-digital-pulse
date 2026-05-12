@@ -19,4 +19,4 @@ Thumbs.db
 .vscode/
 
 # backups
-*.backup.json
+*.backup.json.claude/
