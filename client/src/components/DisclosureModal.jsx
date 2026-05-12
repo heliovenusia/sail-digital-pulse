@@ -103,24 +103,11 @@ export default function DisclosureModal({ onClose }) {
               padding: '14px 16px',
             }}>
               <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
-                Built using selectively adapted open-source realtime interaction
-                components, including the{' '}
+                Built using selectively adapted open-source real-time interaction
+                components, including but not limited to{' '}
                 <span style={{ color: C.accent, fontWeight: 600 }}>
-                  Github/Live-Poll
-                </span>{' '}
-                project ecosystem.
-              </div>
-            </div>
-
-            <div style={{
-              background: 'rgba(6,182,212,0.07)',
-              border: `1px solid ${C.accent}25`,
-              borderRadius: 12,
-              padding: '14px 16px',
-            }}>
-              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
-                Enterprise AI-assisted development tooling was utilized during
-                prototyping and implementation support.
+                  GitHub/Live-Poll
+                </span>.
               </div>
             </div>
 
@@ -131,8 +118,20 @@ export default function DisclosureModal({ onClose }) {
               padding: '14px 16px',
             }}>
               <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
-                Customized and operationally adapted internally for SAIL workshop
-                engagement use cases.
+                Customized and operationally adapted internally for SAIL
+                workshop engagement use cases.
+              </div>
+            </div>
+
+            <div style={{
+              background: 'rgba(6,182,212,0.07)',
+              border: `1px solid ${C.accent}25`,
+              borderRadius: 12,
+              padding: '14px 16px',
+            }}>
+              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
+                Enterprise AI-assisted tooling was utilized during development
+                and enhancement activities.
               </div>
             </div>
           </div>
