@@ -87,6 +87,7 @@ export default function Display({ appState }) {
   const debounceRef = useRef(null)
   const prevEngPct = useRef(0)
   const [showDisclosure, setShowDisclosure] = useState(false)
+  const [showQR, setShowQR] = useState(false)
 
   // Debounce responses for word cloud to avoid thrash
   useEffect(() => {
@@ -141,7 +142,7 @@ export default function Display({ appState }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, gap: 16 }}>
           {/* Left: logo1 + branding */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <LogoLeft size="lg" />
+            <LogoLeft size="xl" />
             <div>
               <div style={{
                 fontSize: 26,
@@ -161,13 +162,21 @@ export default function Display({ appState }) {
             </div>
           </div>
 
-          {/* Right: logo2 + QR */}
+          {/* Right: logo2 + QR (click QR to enlarge) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <LogoRight size="lg" />
+            <LogoRight size="xl" />
             <div style={{ textAlign: 'center' }}>
-              <QRCodeDisplay size={80} />
+              <div
+                onClick={() => setShowQR(true)}
+                title="Click to enlarge for participants"
+                style={{ cursor: 'pointer', display: 'inline-block', transition: 'transform 0.2s ease' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <QRCodeDisplay size={80} />
+              </div>
               <div style={{ fontSize: 10, color: C.textMuted, marginTop: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                Join here
+                Tap to enlarge
               </div>
             </div>
           </div>
@@ -344,7 +353,7 @@ export default function Display({ appState }) {
           <span style={{ animation: 'pulse 3s ease-in-out infinite' }}>
             ● Live
           </span>
-          <span style={{ marginLeft: 12, opacity: 0.5 }}>
+          <span style={{ marginLeft: 12, fontWeight: 700, color: C.text, fontSize: 12, letterSpacing: '0.01em' }}>
             SAIL Digital Transformation Division, Ranchi
           </span>
           <button
@@ -367,6 +376,48 @@ export default function Display({ appState }) {
         </div>
       </div>
       {showDisclosure && <DisclosureModal onClose={() => setShowDisclosure(false)} />}
+
+      {/* QR Enlargement overlay */}
+      {showQR && (
+        <div
+          onClick={() => setShowQR(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 8000,
+            background: 'rgba(0,0,0,0.82)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 24,
+            animation: 'fdFadeIn 0.25s ease',
+          }}
+        >
+          <style>{`
+            @keyframes qrPop { from { opacity:0; transform:scale(0.82); } to { opacity:1; transform:scale(1); } }
+          `}</style>
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{ animation: 'qrPop 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}
+          >
+            <QRCodeDisplay size={320} />
+          </div>
+          <div style={{
+            textAlign: 'center',
+            color: 'rgba(255,255,255,0.85)',
+          }}>
+            <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 6 }}>
+              Scan to join
+            </div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)' }}>
+              Click anywhere to close
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -94,36 +94,45 @@ export default function DisclosureModal({ onClose }) {
           <div style={{ height: 1, background: `linear-gradient(90deg, ${C.primary}50, transparent)`, marginBottom: 20 }} />
 
           {/* Body */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
 
-            {/* OSS credit */}
             <div style={{
               background: 'rgba(99,102,241,0.08)',
               border: `1px solid ${C.primary}30`,
               borderRadius: 12,
               padding: '14px 16px',
             }}>
-              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.7 }}>
-                Forked and enhanced from the{' '}
-                <strong style={{ color: C.text }}>Live-Poll</strong>{' '}
-                open-source project (
+              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
+                Built using selectively adapted open-source realtime interaction
+                components, including the{' '}
                 <span style={{ color: C.accent, fontWeight: 600 }}>
-                  github/yf19770/Live-Poll
-                </span>
-                ) and related OSS libraries for SAIL's internal engagement use.
+                  Github/Live-Poll
+                </span>{' '}
+                project ecosystem.
               </div>
             </div>
 
-            {/* AI disclosure */}
             <div style={{
               background: 'rgba(6,182,212,0.07)',
               border: `1px solid ${C.accent}25`,
               borderRadius: 12,
               padding: '14px 16px',
             }}>
-              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.7 }}>
-                Enterprise AI-assisted development tools were utilized during
-                customization and enhancement.
+              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
+                Enterprise AI-assisted development tooling was utilized during
+                prototyping and implementation support.
+              </div>
+            </div>
+
+            <div style={{
+              background: 'rgba(16,185,129,0.07)',
+              border: `1px solid ${C.success}25`,
+              borderRadius: 12,
+              padding: '14px 16px',
+            }}>
+              <div style={{ fontSize: 13, color: C.text, lineHeight: 1.75 }}>
+                Customized and operationally adapted internally for SAIL workshop
+                engagement use cases.
               </div>
             </div>
           </div>

@@ -363,7 +363,9 @@ export default function Participant({ appState, socket }) {
             {appState.participantCount} participant{appState.participantCount !== 1 ? 's' : ''} joined
           </div>
         )}
-        <div>SAIL Digital Transformation Division, Ranchi</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: C.text, letterSpacing: '0.01em' }}>
+          SAIL Digital Transformation Division, Ranchi
+        </div>
         <button
           onClick={() => setShowDisclosure(true)}
           style={{

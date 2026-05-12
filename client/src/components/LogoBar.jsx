@@ -8,22 +8,24 @@ import logo2 from '../assets/logo2.jpg'
  * wherever they need inside their own flex layout.
  */
 
-const HEIGHTS = { sm: 44, md: 52, lg: 68 }
+// Heights per context. xl is for the projector/display screen.
+const HEIGHTS = { sm: 44, md: 52, lg: 72, xl: 96 }
 
 function Logo({ src, alt, height }) {
   return (
     <img
       src={src}
       alt={alt}
+      // width:auto + explicit height = browser preserves natural aspect ratio.
+      // objectFit is intentionally omitted — it can distort <img> when width is auto.
       style={{
         height,
         width: 'auto',
-        objectFit: 'contain',
+        display: 'block',
         background: 'white',
         borderRadius: 10,
-        padding: '4px 6px',
-        display: 'block',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.35)',
+        padding: '5px 8px',
+        boxShadow: '0 2px 16px rgba(0,0,0,0.4)',
         flexShrink: 0,
       }}
     />

@@ -543,7 +543,9 @@ export default function Admin({ appState, socket }) {
         justifyContent: 'center',
         gap: 16,
       }}>
-        <span>SAIL Digital Transformation Division, Ranchi</span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: C.text, letterSpacing: '0.01em' }}>
+          SAIL Digital Transformation Division, Ranchi
+        </span>
         <button
           onClick={() => setShowDisclosure(true)}
           style={{
