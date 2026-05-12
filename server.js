@@ -6,6 +6,7 @@ const { Server } = require('socket.io')
 const cors = require('cors')
 const rateLimit = require('express-rate-limit')
 const path = require('path')
+const fs = require('fs')
 const state = require('./state')
 
 const app = express()
@@ -155,24 +156,35 @@ io.on('connection', (socket) => {
 })
 
 // ── Static files ──────────────────────────────────────────────────────────────
-// Always serve client/dist when it exists (production build).
-// Falls back to a plain message only if the dist folder is absent (bare dev).
+// process.cwd() is more reliable than __dirname on Render/Railway because
+// the working directory is always the repo root regardless of how Node resolves
+// the script path.
 
-const distPath = path.join(__dirname, 'client', 'dist')
-const fs = require('fs')
+const distPath = path.join(process.cwd(), 'client', 'dist')
+const indexHtml = path.join(distPath, 'index.html')
 
-if (fs.existsSync(distPath)) {
-  // Serve hashed JS/CSS/image assets with long-lived cache
-  app.use(express.static(distPath, { maxAge: '7d' }))
+if (fs.existsSync(indexHtml)) {
+  // 1. Explicitly serve /assets/* first so Vite's hashed bundles are never
+  //    caught by any downstream middleware.
+  app.use(
+    '/assets',
+    express.static(path.join(distPath, 'assets'), {
+      maxAge: '1y',    // safe: Vite content-hashes every filename
+      immutable: true,
+    })
+  )
 
-  // For every unknown route (/, /admin, /display, etc.) hand back index.html
-  // so React Router handles client-side navigation
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'))
+  // 2. Serve everything else in dist (favicon, manifest, etc.)
+  app.use(express.static(distPath, { maxAge: '1h' }))
+
+  // 3. SPA catch-all: return index.html for React Router paths.
+  //    Regex excludes /api/* and /socket.io/* so those are never intercepted.
+  app.get(/^(?!\/(api|socket\.io))/, (req, res) => {
+    res.sendFile(indexHtml)
   })
 } else {
   app.get('/', (req, res) => {
-    res.send('SAIL Digital Pulse backend running. Run "npm run build" to build the frontend, then restart.')
+    res.send('SAIL Digital Pulse — run "npm run build" first, then restart the server.')
   })
 }
 
