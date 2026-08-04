@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+client/node_modules/
+
+# builds
+client/dist/
+
+# env
+.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# backups
+*.backup.json.claude/
