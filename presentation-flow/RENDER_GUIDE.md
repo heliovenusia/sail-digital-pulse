@@ -15,18 +15,20 @@ If creating a Web Service manually, use:
 - Start Command: `npm start`
 - Environment variable: `ADMIN_PASSWORD=<your-secret-password>`
 
-## URLs
+## One URL
 
-- Participant: `https://YOUR-SERVICE.onrender.com/`
-- Presenter: `https://YOUR-SERVICE.onrender.com/admin`
-- Projector: `https://YOUR-SERVICE.onrender.com/display`
+Distribute only `https://YOUR-SERVICE.onrender.com/`.
+
+- Participants open or scan this URL and see the polling screen.
+- The facilitator selects the discreet **Presenter access** link at the bottom, then signs in.
+- In Presenter View, select **Present full screen**. A presentation window opens at the same URL and is automatically recognized as the projector window.
 
 ## Before the event
 
-1. Open `/admin` and sign in.
+1. Open the application URL, select **Presenter access**, and sign in.
 2. Add questions in their presentation order.
-3. Open `/display` on the projector and enter browser full-screen mode.
-4. Keep `/admin` on the facilitator's laptop.
+3. Select **Present full screen**, move that window to the projector, and enter browser full-screen mode.
+4. Keep Presenter View on the facilitator's laptop.
 5. Start at **Welcome**, then use **Next presentation step** throughout the session.
 
 ## Flow per question

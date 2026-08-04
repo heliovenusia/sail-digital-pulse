@@ -16,7 +16,7 @@ const io = new Server(httpServer, {
   cors: { origin: '*', methods: ['GET', 'POST'] },
 })
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.POLL_PRESENTATION_PORT || process.env.PORT || 3001
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'
 
 // ── Middleware ────────────────────────────────────────────────────────────────
